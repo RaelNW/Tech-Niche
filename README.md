@@ -18,7 +18,7 @@ Based on the given requirements, here are the routes you might need for your blo
 
 ### Home Routes:
 
-4. **Homepage:**
+4. **Homepage:**√√√√
    - `GET /`: Display existing blog posts.
      - Controller: Fetch and render blog posts for the homepage.
 
@@ -28,17 +28,18 @@ Based on the given requirements, here are the routes you might need for your blo
    - `GET /dashboard`: Display user's blog posts.
      - Controller: Fetch and render the user's blog posts.
 
-6. **View Blog Post:**
+6. **View Blog Post:** √√√√√
    - `GET /post/:id`: Display details of a specific blog post.
      - Controller: Fetch and render the blog post details and associated comments.
+8. **Edit Blog Post:**
+   - `GET /post/:id/edit`: Render a form to edit a blog post.
+     - Controller: Fetch and render the blog post for editing.
 
 7. **Add Comment:**
    - `POST /post/:id/comment`: Add a comment to a blog post.
      - Controller: Handle comment creation.
 
-8. **Edit Blog Post:**
-   - `GET /post/:id/edit`: Render a form to edit a blog post.
-     - Controller: Fetch and render the blog post for editing.
+
 
 9. **Update Blog Post:**
    - `PUT /post/:id`: Update a blog post.
