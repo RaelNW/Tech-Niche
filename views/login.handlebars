@@ -1,27 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TECH NICHE BLOG</title>
-</head>
-<body>
-    <form>
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-        </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
-        </div>
-        <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+{{!< layouts/main}} 
+
+    {{#content "main" }} 
+    
+    <form class="needs-validation" novalidate action="/signup" method="POST">
+    <!-- Your signup form content goes here -->
+    <button class="btn btn-primary" type="submit">Sign Up</button>
     </form>
-    <script src="/public/js/login.js"></script>
-</body>
-</html>
+
+    <form class="needs-validation" novalidate action="/login" method="POST">
+        <!-- Your login form content goes here -->
+        <button class="btn btn-primary" type="submit">Login</button>
+    </form>
+    {{/content}}

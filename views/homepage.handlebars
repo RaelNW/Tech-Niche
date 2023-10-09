@@ -1,0 +1,20 @@
+{{!<layout/main}}
+
+{{#content "main" }} 
+<h1>Welcome to the Blog</h1>
+
+    {{#each blogs}}
+    <div class="blog-post">
+        <h2>{{title}}</h2>
+        <p>{{content}}</p>
+        <p>Written by {{User.name}}</p>
+    </div>
+    {{/each}}
+
+    {{#if logged_in}}
+    <p>Hello, {{user_name}}!</p>
+    <a href="/profile">Go to your profile</a>
+    {{else}}
+    <a href="/login">Login</a>
+    {{/if}}
+    {{/content}}
