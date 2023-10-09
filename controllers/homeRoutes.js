@@ -5,7 +5,7 @@ const withAuth = require("../utils/auth");
 // Display existing blog posts.
 router.get("/", async (req, res) => {
   try {
-    // Get all posts and JOIN with user data
+    // Get all post and JOIN with user data
     const BlogData = await BlogPost.findAll({
       attributes: ["id", "title", "content", "date_created", "user_id"],
       include: [
