@@ -15,29 +15,29 @@ router.post("/", async (req, res) => {
     }
 });
 
-router.put("/:id", async (req, res) => {
-    try {
-        const [updateRowCount] = await Comment.update(
-        {
-            comment_text: req.body.comment_text,
-        },
-        {
-            where: {
-            id: req.params.id,
-            user_id: req.session.user_id,
-            },
-        }
-        );
+// router.put("/:id", async (req, res) => {
+//     try {
+//         const [updateRowCount] = await Comment.update(
+//         {
+//             comment_text: req.body.comment_text,
+//         },
+//         {
+//             where: {
+//             id: req.params.id,
+//             user_id: req.session.user_id,
+//             },
+//         }
+//         );
 
-        if (updateRowCount === 0) {
-        res.status(404).json({ message: "Comment not found with that id" });
-        return;
-        }
-        res.json({ message: "Comment updated" });
-    } catch (err) {
-        res.status(400).json(err);
-    }
-});
+//         if (updateRowCount === 0) {
+//         res.status(404).json({ message: "Comment not found with that id" });
+//         return;
+//         }
+//         res.json({ message: "Comment updated" });
+//     } catch (err) {
+//         res.status(400).json(err);
+//     }
+// });
 
 router.delete("/:id", async (req, res) => {
     try {
@@ -57,4 +57,5 @@ router.delete("/:id", async (req, res) => {
         res.status(400).json(err);
     }
     });
+    
 module.exports = Comment;

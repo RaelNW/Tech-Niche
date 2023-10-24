@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, BlogPost, Comment} = require("../models");
+const { User, BlogPost, Comment } = require("../models");
 const withAuth = require("../utils/auth");
 
 // Display existing blog posts.
@@ -7,7 +7,7 @@ router.get("/", async (req, res) => {
   try {
     // Get all post and JOIN with user data
     const BlogData = await BlogPost.findAll({
-      attributes: ["id", "title", "content", "date_created", "user_id"],
+      attributes: ["id", "title", "contents", "created_at", "user_id"],
       include: [
         {
           model: User,
@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
         },
         {
           model: Comment,
-          attributes: ["comment_text", "date_created", "user_id"],
+          attributes: ["comment_text", "created_at", "user_id"],
         },
       ],
     });
@@ -46,7 +46,7 @@ router.get("/post/:id", async (req, res) => {
         },
         {
           model: Comment,
-          attributes: ["comment_text", "date_created", "user_id"],
+          attributes: ["comment_text", "created_at", "user_id"],
           include: [
             {
               model: User,
@@ -70,8 +70,6 @@ router.get("/post/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
-
 
 // Use withAuth middleware to prevent access to route
 router.get("/profile", withAuth, async (req, res) => {

@@ -5,9 +5,9 @@ const withAuth = require("../../utils/auth");
 router.post("/", withAuth, async (req, res) => {
   try {
     const newBlogData = await BlogPost.create({
-      ...req.body,
+      // ...req.body,
       user_id: req.session.user_id,
-      content: req.body.content,
+      contents: req.body.content,
     });
     res.status(200).json(newBlogData);
   } catch (err) {
@@ -20,7 +20,7 @@ router.put("/:id", withAuth, async (req, res) => {
     const [updateRowCount] = await BlogPost.update(
       {
         title: req.body.title,
-        content: req.body.content,
+        contents: req.body.content,
       },
       {
         where: {

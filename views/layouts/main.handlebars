@@ -1,28 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TECH NICHE BLOG</title>
 </head>
+
 <body>
     <div class="flex-column justify-space-around">
-        <header class="display-flex justify-space-between align-center p-2">
-            <h1>
-                <span role="img" aria-label="money"></span>
-                <a href="/">Blog Post</a>
-            </h1>
-            <nav>
-                <!-- Conditionally render login or logout links -->
-                {{#if logged_in}}
-                <a href="/profile">profile</a> |
-                <button class="no-button" id="logout">logout</button>
-                {{else}}
-                <a href="/login">login</a>
-                {{/if}}
-            </nav>
-        </header>
+<header class="display-flex justify-space-between align-center p-2">
+    <h1>
+        <span role="img" aria-label="money"></span>
+        <a href="/">Blog Post</a>
+    </h1>
+    <nav>
+        {{#if logged_in}}
+        <span>Welcome, {{user.name}} ({{user.email}})</span> |
+        <a href="/profile">Profile</a> |
+        <button class="no-button" id="logout">Logout</button>
+        {{else}}
+        <a href="/login">Login</a>
+        {{/if}}
+    </nav>
+</header>
+
         <main class="container container-fluid mt-5">
+            {{#if showCreateForm}}
+            <!-- Display the form for creating a new blog post -->
+            <form action="/create-post" method="POST">
+                <h2>Create a New Blog Post</h2>
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" placeholder="Enter the title" required>
+                </div>
+                <div class="form-group">
+                    <label for="author">Author</label>
+                    <input type="text" id="author" name="author" placeholder="Enter the author's name" required>
+                </div>
+                <div class="form-group">
+                    <label for="contents">Contents</label>
+                    <textarea id="contents" name="contents" placeholder="Write your blog post contents"
+                        required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="comments">Comments</label>
+                    <textarea id="comments" name="comments" placeholder="Write comments for the blog post"></textarea>
+                </div>
+                <button type="submit">Create Post</button>
+            </form>
+            {{/if}}
+
             <!-- Render the sub layout -->
             {{{ body }}}
         </main>
@@ -31,9 +59,10 @@
         </footer>
     </div>
 
-    <!-- Render script for logged in users only -->
+    <!-- Render script for logged-in users only -->
     {{#if logged_in}}
     <script src="/js/logout.js"></script>
     {{/if}}
 </body>
+
 </html>
