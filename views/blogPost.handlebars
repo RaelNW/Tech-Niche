@@ -1,17 +1,14 @@
-{{!< layouts/main}} 
-{{#content "main" }} 
-    <h1>{{title}}</h1>
-    <p>{{content}}</p>
-    <p>Written by {{User.name}}</p>
+<h1>{{title}}</h1>
+<p>{{content}}</p>
+<p>Written by {{User.name}}</p>
 
-    {{#each Comments}}
-    <div class="comment">
-        <p>{{comment_text}}</p>
-        <p>Comment by {{User.name}}</p>
-    </div>
-    {{/each}}
+{{#each Comments}}
+  <div class="comment">
+    <p>{{comment_text}}</p>
+    <p>Comment by {{User.name}}</p>
+  </div>
+{{/each}}
 
-    {{#if logged_in}}
-    <!-- Add a form to submit new comments if needed -->
-    {{/if}}
-    {{/content}}
+{{#if logged_in}}
+  <!-- Add a form to submit new comments if needed -->
+{{/if}}

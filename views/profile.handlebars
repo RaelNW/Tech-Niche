@@ -1,6 +1,10 @@
-{{> main}}
+
 <h2>Dashboard</h2>
 <h3>Welcome, {{user.name}} ({{user.email}})</h3>
+<!-- Add a Logout button -->
+<form action="/logout" method="POST">
+  <button type="submit">Log Out</button>
+</form>
 {{#if myPosts.length}}
 <!-- Display user's blog posts with options to delete/edit -->
 {{/if}}

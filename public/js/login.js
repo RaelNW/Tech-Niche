@@ -1,9 +1,40 @@
+// client.js
+
+// Wait for the DOM to load
+document.addEventListener("DOMContentLoaded", () => {
+  // Initially hide the signup form
+  document.querySelector(".signup-form").style.display = "none";
+
+  // Toggle between login and signup forms
+  document.querySelector("#show-signup").addEventListener("click", () => {
+    document.querySelector(".login-form").style.display = "none";
+    document.querySelector(".signup-form").style.display = "block";
+  });
+
+  document.querySelector("#show-login").addEventListener("click", () => {
+    document.querySelector(".signup-form").style.display = "none";
+    document.querySelector(".login-form").style.display = "block";
+  });
+
+  // Handle login form submission
+  document
+    .querySelector("#login-form")
+    .addEventListener("submit", loginFormHandler);
+
+  // Handle signup form submission
+  document
+    .querySelector("#signup-form")
+    .addEventListener("submit", signupFormHandler);
+});
+
+// login
+
 const loginFormHandler = async (event) => {
   event.preventDefault();
 
   // Collect values from the login form
-  const email = document.querySelector("#email-login").value.trim();
-  const password = document.querySelector("#password-login").value.trim();
+  const email = document.querySelector("#email").value.trim();
+  const password = document.querySelector("#password").value.trim();
 
   if (email && password) {
     // Send a POST request to the API endpoint
@@ -25,9 +56,9 @@ const loginFormHandler = async (event) => {
 const signupFormHandler = async (event) => {
   event.preventDefault();
 
-  const name = document.querySelector("#name-signup").value.trim();
-  const email = document.querySelector("#email-signup").value.trim();
-  const password = document.querySelector("#password-signup").value.trim();
+  const name = document.querySelector("#name").value.trim();
+  const email = document.querySelector("#email").value.trim();
+  const password = document.querySelector("#password").value.trim();
 
   if (name && email && password) {
     const response = await fetch("/api/users", {
