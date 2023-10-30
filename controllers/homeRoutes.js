@@ -16,6 +16,11 @@ router.get("/", async (req, res) => {
         {
           model: Comment,
           attributes: ["comment_text", "created_at", "user_id"],
+          include:
+            {
+              model: User,
+              attributes: ["name"],
+            },
         },
       ],
     });
@@ -71,10 +76,9 @@ router.get("/post/:id", async (req, res) => {
   }
 });
 
-// Use withAuth middleware to prevent access to route
 router.get("/profile", withAuth, async (req, res) => {
   try {
-    // Find the logged in user based on the session ID
+    // Find the logged-in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ["password"] },
       include: [{ model: BlogPost }],
@@ -91,6 +95,7 @@ router.get("/profile", withAuth, async (req, res) => {
   }
 });
 
+
 router.get("/signup", (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
@@ -98,7 +103,7 @@ router.get("/signup", (req, res) => {
     return;
   }
 
-  res.render("login");
+  res.render("signup");
 });
 
 router.get("/login", (req, res) => {

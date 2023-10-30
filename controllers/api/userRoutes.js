@@ -30,11 +30,12 @@ router.post("/signup", async (req, res) => {
     req.session.user_name = userData.name;
     req.session.logged_in = true;
 
-    res.status(200).json(userData);
+    res.redirect("/profile");
   } catch (err) {
     res.status(400).json(err);
   }
 });
+
 // Handle the login form submission
 router.post("/login", async (req, res) => {
   try {

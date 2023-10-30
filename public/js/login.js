@@ -1,31 +1,31 @@
 // client.js
 
-// Wait for the DOM to load
-document.addEventListener("DOMContentLoaded", () => {
-  // Initially hide the signup form
-  document.querySelector(".signup-form").style.display = "none";
+// // Wait for the DOM to load
+// document.addEventListener("DOMContentLoaded", () => {
+//   // Initially hide the signup form
+//   document.querySelector(".signup-form").style.display = "none";
 
-  // Toggle between login and signup forms
-  document.querySelector("#show-signup").addEventListener("click", () => {
-    document.querySelector(".login-form").style.display = "none";
-    document.querySelector(".signup-form").style.display = "block";
-  });
+//   // Toggle between login and signup forms
+//   document.querySelector("#show-signup").addEventListener("click", () => {
+//     document.querySelector(".login-form").style.display = "none";
+//     document.querySelector(".signup-form").style.display = "block";
+//   });
 
-  document.querySelector("#show-login").addEventListener("click", () => {
-    document.querySelector(".signup-form").style.display = "none";
-    document.querySelector(".login-form").style.display = "block";
-  });
+//   document.querySelector("#show-login").addEventListener("click", () => {
+//     document.querySelector(".signup-form").style.display = "none";
+//     document.querySelector(".login-form").style.display = "block";
+//   });
 
-  // Handle login form submission
-  document
-    .querySelector("#login-form")
-    .addEventListener("submit", loginFormHandler);
+//   // Handle login form submission
+//   document
+//     .querySelector("#login-form")
+//     .addEventListener("submit", loginFormHandler);
 
-  // Handle signup form submission
-  document
-    .querySelector("#signup-form")
-    .addEventListener("submit", signupFormHandler);
-});
+//   // Handle signup form submission
+//   document
+//     .querySelector("#signup-form")
+//     .addEventListener("submit", signupFormHandler);
+// });
 
 // login
 
@@ -53,35 +53,13 @@ const loginFormHandler = async (event) => {
   }
 };
 
-const signupFormHandler = async (event) => {
-  event.preventDefault();
 
-  const name = document.querySelector("#name").value.trim();
-  const email = document.querySelector("#email").value.trim();
-  const password = document.querySelector("#password").value.trim();
-
-  if (name && email && password) {
-    const response = await fetch("/api/users", {
-      method: "POST",
-      body: JSON.stringify({ name, email, password }),
-      headers: { "Content-Type": "application/json" },
-    });
-
-    if (response.ok) {
-      document.location.replace("/profile");
-    } else {
-      alert(response.statusText);
-    }
-  }
-};
 
 document
-  .querySelector(".login-form")
+  .querySelector("#login-form")
   .addEventListener("submit", loginFormHandler);
 
-document
-  .querySelector(".signup-form")
-  .addEventListener("submit", signupFormHandler);
+
 // //login
 
 // const loginFormHandler = async (event) => {
