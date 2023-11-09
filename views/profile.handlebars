@@ -1,15 +1,15 @@
-
 <div>
-<head>
+  <head>
     <title>Dashboard</title>
-</head>
-<body>
+  </head>
+  <body>
     <h2>Dashboard</h2>
     <h3>Welcome, {{user.name}} ({{user.email}})</h3>
     <!-- Add a Logout button -->
-    <form action="/logout" method="POST">
-        <button type="submit">Log Out</button>
+    <form action="/logout" method="POST" id="logout-form">
+      <button type="submit">Log Out</button>
     </form>
-</body>
-</div>
+<script src="/public/js/profile.js"></script>
 
+  </body>
+</div>

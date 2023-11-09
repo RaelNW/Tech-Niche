@@ -1,95 +1,106 @@
 # Tech-Niche
+
 Explore the TechNiche Blog – a place full of smart coding tips, interesting thoughts about tech, and helpful articles
 Based on the given requirements, here are the routes you might need for your blog site:
 
-### Authentication Routes:
+## Table of Contents
+- [AcceptanceCriteria](#acceptance-criteria)
+- [ProjectStructure](#project-structure)
+- [Dependencies](#dependencies)
+- [GettingStarted](#getting-started)
+- [AdditionalNotes](#additional-notes)
+- [Links](#links)
 
-1. **Sign-Up:**
-   - `POST /signup`: Create a new user.
-     - Controller: Handle user creation and authentication.
+## Acceptance Criteria
+GIVEN a CMS-style blog site
+WHEN I visit the site for the first time
+THEN I am presented with the homepage, which includes existing blog posts if any have been posted; navigation links for the homepage and the dashboard; and the option to log in
+WHEN I click on the homepage option
+THEN I am taken to the homepage
+WHEN I click on any other links in the navigation
+THEN I am prompted to either sign up or sign in
+WHEN I choose to sign up
+THEN I am prompted to create a username and password
+WHEN I click on the sign-up button
+THEN my user credentials are saved and I am logged into the site
+WHEN I revisit the site at a later time and choose to sign in
+THEN I am prompted to enter my username and password
+WHEN I am signed in to the site
+THEN I see navigation links for the homepage, the dashboard, and the option to log out
+WHEN I click on the homepage option in the navigation
+THEN I am taken to the homepage and presented with existing blog posts that include the post title and the date created
+WHEN I click on an existing blog post
+THEN I am presented with the post title, contents, post creator’s username, and date created for that post and have the option to leave a comment
+WHEN I enter a comment and click on the submit button while signed in
+THEN the comment is saved and the post is updated to display the comment, the comment creator’s username, and the date created
+WHEN I click on the dashboard option in the navigation
+THEN I am taken to the dashboard and presented with any blog posts I have already created and the option to add a new blog post
+WHEN I click on the button to add a new blog post
+THEN I am prompted to enter both a title and contents for my blog post
+WHEN I click on the button to create a new blog post
+THEN the title and contents of my post are saved and I am taken back to an updated dashboard with my new blog post
+WHEN I click on one of my existing posts in the dashboard
+THEN I am able to delete or update my post and taken back to an updated dashboard
+WHEN I click on the logout option in the navigation
+THEN I am signed out of the site
+WHEN I am idle on the site for more than a set time
+THEN I am able to view posts and comments but I am prompted to log in again before I can add, update, or delete posts
 
-2. **Sign-In:**
-   - `POST /signin`: Sign in an existing user.
-     - Controller: Handle user authentication.
+## Project Structure:
 
-3. **Logout:**
-   - `GET /logout`: Logout the user.
-     - Controller: Handle user logout.
+The project is organized into the following main directories:
 
-### Home Routes:
+- **controllers:** Contains controller files handling the logic for various routes.
+- **middlewares:** Houses middleware files, with the focus on authentication middleware.
+- **public:** For static assets such as stylesheets, images, and client-side scripts.
+- **views:** Holds view templates written in your preferred templating language (e.g., EJS, Pug).
+- **routes:** Defines route handling using Express.js, as outlined in the Route Structure section.
+- **models:** If applicable, this directory can contain data models for interacting with a database.
+- **config:** For configuration files if needed.
 
-4. **Homepage:**√√√√
-   - `GET /`: Display existing blog posts.
-     - Controller: Fetch and render blog posts for the homepage.
+## Dependencies:
 
-### BlogPost Routes:
+Make sure you have Node.js and npm installed on your machine.
 
-5. **Dashboard:**
-   - `GET /dashboard`: Display user's blog posts.
-     - Controller: Fetch and render the user's blog posts.
+- Node.js: [https://nodejs.org/](https://nodejs.org/)
+- npm: Comes with Node.js installation.
 
-6. **View Blog Post:** √√√√√
-   - `GET /post/:id`: Display details of a specific blog post.
-     - Controller: Fetch and render the blog post details and associated comments.
-8. **Edit Blog Post:**
-   - `GET /post/:id/edit`: Render a form to edit a blog post.
-     - Controller: Fetch and render the blog post for editing.
+## Getting Started:
 
-7. **Add Comment:**
-   - `POST /post/:id/comment`: Add a comment to a blog post.
-     - Controller: Handle comment creation.
+1. Clone the repository:
 
-
-
-9. **Update Blog Post:**
-   - `PUT /post/:id`: Update a blog post.
-     - Controller: Handle blog post update.
-
-10. **Delete Blog Post:**
-    - `DELETE /post/:id`: Delete a blog post.
-      - Controller: Handle blog post deletion.
-
-11. **Create New Blog Post:**
-    - `GET /post/new`: Render a form to create a new blog post.
-    - `POST /post/new`: Create a new blog post.
-      - Controller: Handle blog post creation.
-
-### Middleware:
-
-12. **Authentication Middleware:**
-    - A middleware to ensure the user is authenticated before accessing certain routes.
-
-### Example Route Structure (Express.js):
-
-```javascript
-const express = require('express');
-const router = express.Router();
-const authMiddleware = require('./middlewares/auth'); // Import your authentication middleware
-const blogController = require('./controllers/blogController'); // Import your controllers
-
-// Authentication Routes
-router.post('/signup', authController.signup);
-router.post('/signin', authController.signin);
-router.get('/logout', authController.logout);
-
-// Home Routes
-router.get('/', blogController.home);
-
-// BlogPost Routes
-router.use(authMiddleware.requireAuth); // Middleware to check authentication for the following routes
-
-router.get('/dashboard', blogController.dashboard);
-router.get('/post/:id', blogController.viewPost);
-router.post('/post/:id/comment', blogController.addComment);
-router.get('/post/:id/edit', blogController.editPost);
-router.put('/post/:id', blogController.updatePost);
-router.delete('/post/:id', blogController.deletePost);
-router.get('/post/new', blogController.newPostForm);
-router.post('/post/new', blogController.createPost);
-
-module.exports = router;
+```bash
+git clone git@github.com:RaelNW/Tech-Niche.git
+cd Tech-Niche
 ```
 
-In this example, make sure to replace `'./middlewares/auth'` and `'./controllers/blogController'` with the correct paths to your authentication middleware and controller files. The `authMiddleware.requireAuth` middleware is used to ensure that only authenticated users can access the subsequent routes.
+2. Install dependencies:
 
-These routes cover user authentication, displaying blog posts, commenting, and managing blog posts. Adjust them according to your specific needs and application structure.
+```bash
+npm install
+```
+
+3. Set up the database (if applicable):
+
+   - If your blog requires a database, configure the database connection in the appropriate configuration file.
+   - Run any necessary database migration scripts.
+
+4. Run the application:
+
+```bash
+npm start
+```
+
+6. Open your browser and navigate to [http://localhost:3000](http://localhost:3000) to access the TechNiche Blog.
+
+## Additional Notes:
+
+- Ensure that you have the correct paths for middleware and controller files in the route structure.
+- Customize view templates in the `views` directory according to your design preferences.
+- Modify the example route structure in `routes/index.js` to fit your specific needs.
+
+## Links
+
+- [GitHub Profile](https://github.com/RaelNW)
+- [LinkedIn Profile](https://www.linkedin.com/in/raelwanjala/) 
+- [Deployed Link]()

@@ -92,3 +92,26 @@ nav a {
 nav a:hover {
     color: #007bff;
 }
+
+/* Style the page title and header */
+h1 {
+    font-size: 24px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+/* Style the logo */
+span[role="img"] {
+    font-size: 32px;
+}
+
+/* Style the login/logout button */
+#logout {
+    background-color: #d9534f;
+}
+
+#logout:hover {
+    background-color: #c9302c;
+}
