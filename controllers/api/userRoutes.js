@@ -16,6 +16,7 @@ router.post("/", async (req, res) => {
   }
 });
 // Handle the sign-up form submission
+// Handle the sign-up form submission
 router.post("/signup", async (req, res) => {
   try {
     // Create a new user in the database with the provided user data
@@ -30,11 +31,13 @@ router.post("/signup", async (req, res) => {
     req.session.user_name = userData.name;
     req.session.logged_in = true;
 
-    res.redirect("/profile");
+    // Redirect the user to the blog post page
+    res.redirect("/blog");
   } catch (err) {
     res.status(400).json(err);
   }
 });
+
 
 // Handle the login form submission
 router.post("/login", async (req, res) => {

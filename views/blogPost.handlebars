@@ -10,5 +10,9 @@
 {{/each}}
 
 {{#if logged_in}}
-  <!-- Add a form to submit new comments if needed -->
+  <form action="/submit-comment" method="post">
+    <!-- Add your comment input fields, submit button, etc. here -->
+    <textarea name="comment" placeholder="Enter your comment"></textarea>
+    <button type="submit">Submit Comment</button>
+  </form>
 {{/if}}

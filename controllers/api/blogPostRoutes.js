@@ -9,7 +9,7 @@ router.post("/", withAuth, async (req, res) => {
       user_id: req.session.user_id,
       contents: req.body.content,
     });
-    res.status(200).json(newBlogData);
+    res.redirect(`/blog/${newBlogData.id}`);
   } catch (err) {
     res.status(400).json(err);
   }
